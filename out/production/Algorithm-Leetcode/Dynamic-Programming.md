@@ -87,6 +87,9 @@
 
 ## 动态规划的两种实现方法
 ### Top-down with memoization
+Memoization ensures that a method doesn't run for the same inputs more than once by 
+keeping a record of the results for the given inputs (usually in a hash map).
+
 我们可以保持自然递归的自顶向下的策略求解动态规划问题(和分治方法一致)，
 但为了避免反复求解重复的子问题，
 我们在自然低效的递归算法中加入备忘机制. 
@@ -100,6 +103,18 @@
 我们就称这样的递归过程为带备忘的(memoized).
 
 ### Bottom-up method
+Going bottom-up is a way to avoid recursion, 
+saving the memory cost that recursion incurs 
+when it builds up the call stack.
+
+Put simply, a bottom-up algorithm "starts from the beginning," 
+while a recursive algorithm often 
+"starts from the end and works backwards."
+
+
+This makes top-down algorithm vulnerable to a stack overflow error, 
+where the call stack gets too big and runs out of space.
+
 这种方法不使用递归编写. 而是先将子问题按照规模排序，
 由小到大地进行求解并逐一保存. 
 因此和带备忘的自顶向下法一样，
