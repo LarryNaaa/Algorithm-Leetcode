@@ -29,7 +29,7 @@ collection of elements.
 3. 当移动 left 缩小窗口，即移出字符时，应该更新哪些数据？
 4. 我们要的结果应该在扩大窗口时还是缩小窗口时进行更新？
 
-## EXAMPLE
+## Example
 Given a string and a pattern, find all anagrams of the pattern in the given string.
 
 
