@@ -28,3 +28,91 @@ collection of elements.
 2. 什么条件下，窗口应该暂停扩大，开始移动_left_ 缩小窗口？
 3. 当移动 left 缩小窗口，即移出字符时，应该更新哪些数据？
 4. 我们要的结果应该在扩大窗口时还是缩小窗口时进行更新？
+
+## Example
+Given a string and a pattern, find all anagrams of the pattern in the given string.
+
+
+Input: String="ppqp", Pattern="pq"
+
+
+Output: [1, 2]
+
+
+Explanation: The two anagram s of the pattern in the given string are "pq" and "qp".
+ 
+**our goal is to match characters from the map the current window**
+1. use **a map** to store the characters and their frequency.
+2. a variable **matchedCount**, which records characters' matched count.
+3. use a **loop** to extend the window.
+   1) get the right character
+   2) if the map contains this character,
+   we need to decrease it's frequency and if the 
+   value of this character in the map is equal to
+   0, then we need to increase the matchedCount.
+   3) if the matchedCount is equal to the size of map,
+   which means we get a satisfied anagram.
+   4) if we have the required window size, then we
+   shrink the window:
+   get the left character;if the map contains this 
+   character, and if the value of this character in the map is equal to
+   0, then we need to decrease the matchedCount, put 
+   the character back.
+   
+```java
+public List<Integer> findAnagrams(String s, String p) {
+        // result
+        List<Integer> result = new ArrayList<>();
+        // basic check
+        if(s.length() == 0) return result;
+        // use a map to store the characters and their frequency in string 'p'
+        Map<Character, Integer> map = new HashMap<>();
+        for(int i = 0; i < p.length(); i++){
+            char c = p.charAt(i);
+            map.put(c, map.getOrDefault(c, 0) + 1);
+        }
+        // use the sliding window
+        int windowStart = 0;
+        // our goal is to match the characters from the map with the current window
+        // a variable records the matched count
+        int matchedCount = 0;
+        // use a loop to extend the window
+        for(int windowEnd = 0; windowEnd < s.length(); windowEnd++){
+            // get the character from string 's' at the index 'windowEnd'
+            char end = s.charAt(windowEnd);
+            // if the map contains this character, decrease the frequency
+            if(map.containsKey(end)){
+                // decrease the frequency
+                map.put(end, map.get(end) - 1);
+                // if the value of the character in map is equal to 0,
+                // increase the matched count
+                if(map.get(end) == 0){
+                    matchedCount++;
+                }
+            }
+            // if the index windowEnd is not less than the length of string 'p' - 1
+            if(windowEnd >= p.length() - 1){
+                // if the number of matched count is equal to the size of the map,
+                // we get a satisfied anagrams
+                if(matchedCount == map.size()){
+                    result.add(windowStart);
+                }
+                // shrink window
+                char start = s.charAt(windowStart);
+                // if the map contains the key start, update match and map
+                if(map.containsKey(start)){
+                    // decrease the matched count
+                    if(map.get(start) == 0){
+                        matchedCount--;
+                    }
+                    // put the character back
+                    map.put(start, map.get(start) + 1);
+                }
+                // slide the window ahead
+                windowStart++;
+            }
+        }
+        return result;
+    }
+```
+    
