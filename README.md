@@ -13,7 +13,9 @@
 
 1. 二分查找问题
 
-2. n数之和问题：比如两数之和问题，先对数组排序然后左右指针找到满足条件的两个数。如果是三数问题就转化为一个数和另外两个数的两数问题。以此类推。
+2. n数之和问题：比如两数之和问题，
+先对数组排序然后左右指针找到满足条件的两个数。
+如果是三数问题就转化为一个数和另外两个数的两数问题。以此类推。
 
 ### 快慢指针
 类似于龟兔赛跑，两个链表上的指针从同一节点出发，其中一个指针前进速度是另一个指针的两倍。利用快慢指针可以用来解决某些算法问题，比如
@@ -83,6 +85,49 @@ maximum height of the tree.
 ```java
     maxHeap = new PriorityQueue<>((a, b) -> b - a);
     minHeap = new PriorityQueue<>((a, b) -> a - b);
+
+class MedianOfAStream {
+  PriorityQueue<Integer> maxHeap;
+  PriorityQueue<Integer> minHeap;
+
+  static Comparator<Integer> maxCmp = new Comparator<Integer>(){
+    public int compare(Integer o1, Integer o2){
+      return o2 - o1;
+    }
+  };
+
+  static Comparator<Integer> minCmp = new Comparator<Integer>(){
+    public int compare(Integer o1, Integer o2){
+      return o1 - o2;
+    }
+  };
+
+  public MedianOfAStream(){
+    maxHeap = new PriorityQueue<Integer>(maxCmp);
+    minHeap = new PriorityQueue<Integer>(minCmp);
+  }
+
+  public void insertNum(int num) {
+    // TODO: Write your code here
+    if(maxHeap.isEmpty() || num < maxHeap.peek()){
+      maxHeap.add(num);
+    }else{
+      minHeap.add(num);
+    }
+    if(maxHeap.size() > minHeap.size() + 1){
+      minHeap.add(maxHeap.poll());
+    }else if(maxHeap.size() < minHeap.size()){
+      maxHeap.add(minHeap.poll());
+    }
+  }
+
+  public double findMedian() {
+    // TODO: Write your code here
+    if(maxHeap.size() == minHeap.size()){
+      return (maxHeap.peek() + minHeap.peek()) / 2.0;
+    }
+    return maxHeap.peek();
+  }
 ```
 
 ## Subsets
