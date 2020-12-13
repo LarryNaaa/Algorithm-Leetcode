@@ -13,11 +13,24 @@ val = [4, 2, 3]
 #### State
 Capacity and item
 
-#### Choice
-Put item into knapsack or not put item into knapsack
-
 #### DP Array
 ![](https://github.com/LarryNaaa/Algorithm-Leetcode/blob/master/img/0-1%20Knapsack.png)
 
+The row represents the first 'i' kind of items, 
 
+The column represents the capacity 'j' of knapsack, 
 
+dp[i][j] represents the max profit. 
+
+#### Base Case
+When the capacity is zero or we don't have any items to put, the max profit is zero.
+dp[0][...] = dp[...][0] = 0
+
+#### Choice
+Not put item 'i' into knapsack: `dp[i][j] = dp[i - 1][j]`
+
+If we don't include item 'i', the capacity will not change, the subproblem is that when capacity is still 'j', we need to get the max profit from first 'i - 1' kinds of items.
+
+Put item 'i' into knapsack: `dp[i][j] = dp[i - 1][j - wt[i - 1]] + val[i - 1]`
+
+If we include item 'i', the capacity will change(`j - wt[i - 1]` the current capacity 'j' subtract the weight of item 'i', in item weight array 'wt', item is begin from index 0, so 'i - 1' is the correct index), our current max profit is the sum of the max profit from first 'i - 1' kinds of items(`dp[i - 1][j - wt[i - 1]]`) when capacity is `j - wt[i - 1]` and the profit of current item(`val[i - 1]`).
