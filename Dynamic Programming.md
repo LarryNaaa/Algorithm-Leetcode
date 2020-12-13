@@ -17,3 +17,7 @@ Capacity and item
 Put item into knapsack or not put item into knapsack
 
 #### DP Array
+[](https://github.com/LarryNaaa/Algorithm-Leetcode/blob/master/img/0-1%20Knapsack.png)
+
+
+
