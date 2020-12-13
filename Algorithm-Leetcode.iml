@@ -6,6 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/Dynamic-Programming" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/Sliding-Window" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/Two-Pointers" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
