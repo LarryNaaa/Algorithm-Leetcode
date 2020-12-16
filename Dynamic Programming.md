@@ -1,4 +1,19 @@
 # Dynamic Programming
+## Characteristics
+### Overlapping Subproblems
+Dynamic Programming is mainly used when solutions of same subproblems are needed again and again. In dynamic programming, computed solutions to subproblems are stored in a table so that these don’t have to be recomputed.
+
+### Optimal Substructure Property
+A given problems has Optimal Substructure Property if optimal solution of the given problem can be obtained by using optimal solutions of its subproblems. 
+
+## Steps to solve a DP
+1. Identify if it is a DP problem
+2. Decide a state expression with least parameters(A state can be defined as the set of parameters that can uniquely identify a certain position or standing in the given problem. This set of parameters should be as small as possible to reduce state space)
+3. Formulate state relationship    
+4. Do tabulation (or add memoization)
+
+[Steps to solve a DP](https://www.geeksforgeeks.org/solve-dynamic-programming-problem/?ref=lbp)
+
 ## Knapsack
 ### 0-1 Knapsack
 [youtube](https://www.youtube.com/watch?v=xCbYmUPvc2Q)
@@ -53,3 +68,39 @@ for i in [1...N]:
 
 return dp[N][W]
 ```
+
+## Subsequence
+### Longest Increasing Subsequence
+[Leetcode 300](https://leetcode.com/problems/longest-increasing-subsequence/)
+
+#### Step 1: Identify if it is a DP problem
+For example, the sequence is [10,9,2,5,3,7,101,18], in order to get the longest increasing subsequence is [2,3,7,101] which length is 4, we need to get the length of its subproblem([2,3,7]) and then plus 1. So this problem satisfies optimal substructure property, we can solve it by DP.
+
+#### Step 2: Decide a state expression with least parameters and Do tabulation
+The state is the index of the input sequence.
+
+dp[i] is the length of the increasing subsequence when index = i. If we know the length of increasing subsequence for each index, we can traverse dp array and find the longest length easily.
+
+base case: dp[0] = 1, when the input sequence only have one parameter, the length of it is 1.
+
+#### Step 3: Formulate state relationship
+![Example-1](https://mmbiz.qpic.cn/sz_mmbiz_jpg/gibkIz0MVqdEIkv0ic85dgclViaMQ9IBicMxWQdJu1M3xKrcpc3lxbw7Z9pqhfgXO6gdKw2BxugpUJGJyBToTeYPbA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+In order to find dp[5], we need to find the length of subsequence whose value(nums[index]) is less than nums[5], there are multiple subsequences, we need to find the longest one.
+
+dp[i] = Math.max(dp[i], dp[j] + 1), 'i' is the current index, 'j' is the index of element whose value is less than 'i'.
+
+Pseudocode:
+```Java
+        // traverse each elements in dp, begin from 1
+        for(int i = 1; i < nums.length; i++){
+            // traverse each element before 'i', begin from 0
+            for(int j = 0; j < i; j++){
+                // the val of 'j' < the val of 'i', means that we have a increasing subsquence
+                if(nums[j] < nums[i]){
+                    dp[i] = Math.max(dp[i], dp[j] + 1);
+                }
+            }
+        }
+```
+
