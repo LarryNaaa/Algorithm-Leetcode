@@ -110,6 +110,16 @@ Pseudocode:
 ### Maximum Subarray
 [Leetcode 53](https://leetcode.com/problems/maximum-subarray/)
 
+### Longest Common Subsequence
+
+[Leetcode 1143](https://leetcode.com/problems/longest-common-subsequence/)
+
+### Edit Distance
+
+[Leetcode 72](https://leetcode.com/problems/edit-distance/)
+
+
+
 
 
 
