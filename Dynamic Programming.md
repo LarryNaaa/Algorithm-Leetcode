@@ -69,13 +69,9 @@ for i in [1...N]:
 return dp[N][W]
 ```
 
-## Subsequence
+## Subsequence([Subsequence](https://mp.weixin.qq.com/s?__biz=MzAxODQxMDM0Mw==&mid=2247484666&idx=1&sn=e3305be9513eaa16f7f1568c0892a468&chksm=9bd7faf2aca073e4f08332a706b7c10af877fee3993aac4dae86d05783d3d0df31844287104e&scene=21#wechat_redirect))
 
-[Subsequence](https://mp.weixin.qq.com/s?__biz=MzAxODQxMDM0Mw==&mid=2247484666&idx=1&sn=e3305be9513eaa16f7f1568c0892a468&chksm=9bd7faf2aca073e4f08332a706b7c10af877fee3993aac4dae86d05783d3d0df31844287104e&scene=21#wechat_redirect)
-
-### Longest Increasing Subsequence
-[Leetcode 300](https://leetcode.com/problems/longest-increasing-subsequence/)
-
+### Longest Increasing Subsequence([Leetcode 300](https://leetcode.com/problems/longest-increasing-subsequence/))
 #### Step 1: Identify if it is a DP problem
 For example, the sequence is [10,9,2,5,3,7,101,18], in order to get the longest increasing subsequence is [2,3,7,101] which length is 4, we need to get the length of its subproblem([2,3,7]) and then plus 1. So this problem satisfies optimal substructure property, we can solve it by DP.
 
@@ -107,18 +103,136 @@ Pseudocode:
         }
 ```
 
-### Maximum Subarray
-[Leetcode 53](https://leetcode.com/problems/maximum-subarray/)
-
-### Longest Common Subsequence
-
-[Leetcode 1143](https://leetcode.com/problems/longest-common-subsequence/)
-
-### Edit Distance
-
-[Leetcode 72](https://leetcode.com/problems/edit-distance/)
+### Maximum Subarray([Leetcode 53](https://leetcode.com/problems/maximum-subarray/))
 
 
+### Longest Common Subsequence([Leetcode 1143](https://leetcode.com/problems/longest-common-subsequence/))
+
+
+
+### Edit Distance([Leetcode 72](https://leetcode.com/problems/edit-distance/))
+
+#### 1. State
+
+The states are the index of these two given string.
+
+#### 2. DP Array
+
+`dp[i][j]`: the minimum number of operations for string1[0...i] and string2[0...j].
+
+base case: `dp[i][0] = i` and  `dp[0][j] = j`.
+
+***\*Example :\****
+
+***\*Input: text1 = "abcde", text2 = "ace"\**** 
+
+|         |  ""  | "r"  | "ro" | "ros" |
+| :-----: | :--: | :--: | :--: | :---: |
+|   " "   |  0   |  1   |  2   |   3   |
+|   "h"   |  1   |      |      |       |
+|  "ho"   |  2   |      |      |       |
+|  "hor"  |  3   |      |      |       |
+| "hors"  |  4   |      |      |       |
+| "horse" |  5   |      |      |       |
+
+#### 3. State Relationship
+
+For each string1[i] and string2[j], we have 4 operations:
+
+1. If string1[i] == string2[j], we don't need to do any operations, they already equal to each other :
+
+   |      |  ""  | "h"  |
+   | :--: | :--: | :--: |
+   |  ""  |  0   |  1   |
+   | "h"  |  1   |  0   |
+
+    the number of operations in this situation is as same as the number of operations when i - 1 and j - 1:
+
+   ```java
+   dp[i][j] = dp[i - 1][j - 1];
+   ```
+
+   
+
+2. Otherwise we have three operations for each string1[i] and string2[j]:
+
+   a. replace
+
+   |      |  “”  | “r”  |
+   | :--: | :--: | :--: |
+   |  “”  |  0   |  1   |
+   | “h”  |  1   |  1   |
+
+   we need to replace the character in string2 with the character in string1, it means that we will do one more replace operation than `dp[i - 1][j - 1]`:
+
+   ```java
+   dp[i][j] = dp[i - 1][j - 1] + 1;
+   ```
+
+   b. insert
+
+   |      |  “”  | “r”  | “ro” |
+   | :--: | :--: | :--: | :--: |
+   |  “”  |  0   |  1   |  2   |
+   | “h”  |  1   |  1   |  2   |
+
+   after we replace "h" in string1 with "r", in order to get "ro", we need to insert a character 'o', so we will do one more insert operation than `dp[i][j - 1]`:
+
+   ```java
+   dp[i][j] = dp[i][j - 1] + 1;
+   ```
+
+   c. delete
+
+   |      |  “”  | “r”  |
+   | :--: | :--: | :--: |
+   |  “”  |  0   |  1   |
+   | “h”  |  1   |  1   |
+   | “ho” |  2   |  2   |
+
+   after we replace "h" in string1 with "r", now our string1 is "ro", in order to get "r", we need to delete a character 'o', so we will do one more delete operation than `dp[i - 1][j]`:
+
+   ```java
+   dp[i][j] = dp[i - 1][j] + 1;
+   ```
+
+   in this situation, in order to get the minimum number of operations, we need to get the minimum value of these three operations.
+
+   
+
+#### 4. Pseudocode
+
+```java
+        // dp
+        int[][] dp = new int[word1.length() + 1][word2.length() + 1];
+        // initial dp
+        for(int i = 0; i <= word1.length(); i++){
+            dp[i][0] = i;
+        }
+        for(int j = 0; j <= word2.length(); j++){
+            dp[0][j] = j;
+        }
+        // traverse i
+        for(int i = 1; i <= word1.length(); i++){
+            // traverse j
+            for(int j = 1; j <= word2.length(); j++){
+                // the characters at index i and j are euqal
+                if(word1.charAt(i - 1) == word2.charAt(j - 1)){
+                    // skip: dp[i - 1][j - 1]
+                    dp[i][j] = dp[i - 1][j - 1];
+                }else{
+                    // insert: dp[i][j - 1] + 1
+                    // replace: dp[i - 1][j - 1] + 1
+                    // delete: dp[i - 1][j] + 1
+                    dp[i][j] = 
+                        Math.min(
+                        Math.min(dp[i][j - 1] + 1, dp[i - 1][j - 1] + 1), 
+                        dp[i][j] = dp[i - 1][j] + 1);
+                }
+            }
+        }
+        return dp[word1.length()][word2.length()];
+```
 
 
 
