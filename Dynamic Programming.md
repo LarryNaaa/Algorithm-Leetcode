@@ -242,5 +242,11 @@ For each string1[i] and string2[j], we have 4 operations:
 
 ## Greedy
 
-### Non-overlapping Intervals([Leetcode 435](https://leetcode.com/problems/non-overlapping-intervals/))
+### Interval scheduling
+
+#### Non-overlapping Intervals([Leetcode 435](https://leetcode.com/problems/non-overlapping-intervals/))
+
+#### Minimum Number of Arrows to Burst Balloons([Leetcode 452](https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/))
+
+
 
