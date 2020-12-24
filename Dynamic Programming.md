@@ -196,9 +196,7 @@ For each string1[i] and string2[j], we have 4 operations:
    dp[i][j] = dp[i - 1][j] + 1;
    ```
 
-   in this situation, in order to get the minimum number of operations, we need to get the minimum value of these three operations.
-
-   
+   in this situation, in order to get the minimum number of operations, we need to get the minimum value of these three operations. 
 
 #### 4. Pseudocode
 
@@ -234,11 +232,15 @@ For each string1[i] and string2[j], we have 4 operations:
         return dp[word1.length()][word2.length()];
 ```
 
+### Delete Operation for Two Strings([Leetcode 583](https://leetcode.com/problems/delete-operation-for-two-strings/))
 
 
 
+### Russian Doll Envelopes([Leetcode 354](https://leetcode.com/problems/russian-doll-envelopes/))
 
 
 
+## Greedy
 
+### Non-overlapping Intervals([Leetcode 435](https://leetcode.com/problems/non-overlapping-intervals/))
 
