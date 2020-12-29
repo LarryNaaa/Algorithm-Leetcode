@@ -2,30 +2,42 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 public class test {
-    public static int findMinArrowShots(int[][] points) {
-        if(points.length < 1) return 0;
-        // increasing sort points by the end
-        Arrays.sort(points, new Comparator<int[]>(){
-            public int compare(int[] arr1, int[] arr2){
-                return arr1[1] - arr2[1];
-            }
-        });
-        // initial end and count
-        int end = points[0][1], count = 1;
-        //traverse each points
-        for(int[] point : points){
-            // non overlapping, get new end, count + 1
-            if(point[0] > end){
-                end = point[1];
-                count++;
+    public static boolean isMatch(String s, String p) {
+        // dp[r][c] is whether s is matching p or not when s[0...r] and p[0...c]
+        boolean[][] dp = new boolean[s.length() + 1][p.length() + 1];
+
+        // initial dp:
+        // s = " " p = " "
+        dp[0][0] = true;
+        // p = " "
+        for(int r = 1; r <= s.length(); r++){
+            dp[r][0] = false;
+        }
+        // s = " "
+        for(int c = 1; c <= p.length(); c++){
+            dp[0][c] = (p.charAt(c - 1) == '*') ? dp[0][c - 2] : false;
+        }
+
+        // traverse each elements in s
+        for(int r = 1; r <= s.length(); r++){
+            // traverse each elements in p
+            for(int c = 1; c <= p.length(); c++){
+                // the character at 'r' in s is as same as it at 'c' in p,
+                // or the character at 'c' in p is '.' or '*'
+                if(s.charAt(r - 1) == p.charAt(c - 1) || p.charAt(c - 1) == '.' || p.charAt(c - 1) == '*'){
+                    dp[r][c] = dp[r - 1][c - 1];
+                }else{
+                    dp[r][c] = false;
+                }
             }
         }
-        // add the last arrow
-        return count;
+        return dp[s.length()][p.length()];
     }
 
     public static void main(String[] args) {
-        int[][] input = {{-2147483646,-2147483645},{2147483646,2147483647}};
+        int[][] input = {{-2147483646,-2147483645} ,{2147483646,2147483647}};
         System.out.println(findMinArrowShots(input));;
+
+        (p.charAt(c) == '*') ? dp[0][c - 2] : false;
     }
 }

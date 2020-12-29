@@ -248,5 +248,27 @@ For each string1[i] and string2[j], we have 4 operations:
 
 #### Minimum Number of Arrows to Burst Balloons([Leetcode 452](https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/))
 
+```java
+// increasing sort
+Arrays.sort(points, new Comparator<int[]>(){
+           public int compare(int[] arr1, int[] arr2){
+               return (arr1[1] < arr2[1]) ? -1 : ((arr1[1] == arr2[1]) ? 0 : 1);
+           } 
+        });
+```
+
+### Jump Game
+
+#### Jump Game([Leetcode 55](https://leetcode.com/problems/jump-game/))
+
+#### Jump Game II([Leetcode 45](https://leetcode.com/problems/jump-game-ii/))
+
+### Other
+#### Regular Expression Matching([Leetcode 10](https://leetcode.com/problems/regular-expression-matching/))
+
+
+
+
+
 
 
