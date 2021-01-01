@@ -263,8 +263,21 @@ Arrays.sort(points, new Comparator<int[]>(){
 
 #### Jump Game II([Leetcode 45](https://leetcode.com/problems/jump-game-ii/))
 
-### Other
-#### Regular Expression Matching([Leetcode 10](https://leetcode.com/problems/regular-expression-matching/))
+
+
+## Other
+### Regular Expression Matching([Leetcode 10](https://leetcode.com/problems/regular-expression-matching/))
+
+### Burst Balloons([Leetcode 312](https://leetcode.com/problems/burst-balloons/))
+
+### 4 Keys Keyboard([Leetcode 651](https://leetcode.com/problems/4-keys-keyboard/))
+
+
+
+## Stock Problem
+### Best Time to Buy and Sell Stock([Leetcode 121](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/))
+
+
 
 
 
