@@ -34,10 +34,5 @@ public class test {
         return dp[s.length()][p.length()];
     }
 
-    public static void main(String[] args) {
-        int[][] input = {{-2147483646,-2147483645} ,{2147483646,2147483647}};
-        System.out.println(findMinArrowShots(input));;
 
-        (p.charAt(c) == '*') ? dp[0][c - 2] : false;
-    }
 }
