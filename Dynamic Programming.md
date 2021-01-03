@@ -1,4 +1,7 @@
 # Dynamic Programming
+
+[DP 汇总](https://mp.weixin.qq.com/s/AWsL7G89RtaHyHjRPNJENA)
+
 ## Characteristics
 ### Overlapping Subproblems
 Dynamic Programming is mainly used when solutions of same subproblems are needed again and again. In dynamic programming, computed solutions to subproblems are stored in a table so that these don’t have to be recomputed.
@@ -274,13 +277,21 @@ Arrays.sort(points, new Comparator<int[]>(){
 
 
 
-## Stock Problem
+## Buy and Sell Stock Problem
 ### Best Time to Buy and Sell Stock([Leetcode 121](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/))
 ### Best Time to Buy and Sell Stock II([Leetcode 122](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/))
 ### Best Time to Buy and Sell Stock with Cooldown([Leetcode 309](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/))
 ### Best Time to Buy and Sell Stock with Transaction Fee([Leetcode 714](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/))
 ### Best Time to Buy and Sell Stock III([Leetcode 123](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/))
 ### Best Time to Buy and Sell Stock IV([Leetcode 188](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/))
+
+
+
+## House Robber Problem
+### House Robber([Leetcode 198](https://leetcode.com/problems/house-robber/))
+### House Robber II([Leetcode 213](https://leetcode.com/problems/house-robber-ii/)) **未做**
+### House Robber III([Leetcode 337](https://leetcode.com/problems/house-robber-iii/)) **未做**
+
 
 
 
