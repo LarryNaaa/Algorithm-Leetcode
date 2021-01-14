@@ -71,40 +71,21 @@ for i in [1...N]:
 
 return dp[N][W]
 ```
+### Partition Equal Subset Sum([Leetcode 416](https://leetcode.com/problems/partition-equal-subset-sum/))
+
+状态压缩时(二维压缩为一维)，根据状态转移方程决定遍历一维数组的方向!
+
+### Coin Change([Leetcode 322](https://leetcode.com/problems/coin-change/))
+
+### Coin Change 2([Leetcode 518](https://leetcode.com/problems/coin-change-2/))
+
+
 
 ## Subsequence([Subsequence](https://mp.weixin.qq.com/s?__biz=MzAxODQxMDM0Mw==&mid=2247484666&idx=1&sn=e3305be9513eaa16f7f1568c0892a468&chksm=9bd7faf2aca073e4f08332a706b7c10af877fee3993aac4dae86d05783d3d0df31844287104e&scene=21#wechat_redirect))
 
 ### Longest Increasing Subsequence([Leetcode 300](https://leetcode.com/problems/longest-increasing-subsequence/))
-#### Step 1: Identify if it is a DP problem
-For example, the sequence is [10,9,2,5,3,7,101,18], in order to get the longest increasing subsequence is [2,3,7,101] which length is 4, we need to get the length of its subproblem([2,3,7]) and then plus 1. So this problem satisfies optimal substructure property, we can solve it by DP.
 
-#### Step 2: Decide a state expression with least parameters and Do tabulation
-The state is the index of the input sequence.
-
-dp[i] is the length of the increasing subsequence when index = i. If we know the length of increasing subsequence for each index, we can traverse dp array and find the longest length easily.
-
-base case: dp[0] = 1, when the input sequence only have one parameter, the length of it is 1.
-
-#### Step 3: Formulate state relationship
-![Example-1](https://mmbiz.qpic.cn/sz_mmbiz_jpg/gibkIz0MVqdEIkv0ic85dgclViaMQ9IBicMxWQdJu1M3xKrcpc3lxbw7Z9pqhfgXO6gdKw2BxugpUJGJyBToTeYPbA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
-
-In order to find dp[5], we need to find the length of subsequence whose value(nums[index]) is less than nums[5], there are multiple subsequences, we need to find the longest one.
-
-dp[i] = Math.max(dp[i], dp[j] + 1), 'i' is the current index, 'j' is the index of element whose value is less than 'i'.
-
-Pseudocode:
-```Java
-        // traverse each elements in dp, begin from 1
-        for(int i = 1; i < nums.length; i++){
-            // traverse each element before 'i', begin from 0
-            for(int j = 0; j < i; j++){
-                // the val of 'j' < the val of 'i', means that we have a increasing subsquence
-                if(nums[j] < nums[i]){
-                    dp[i] = Math.max(dp[i], dp[j] + 1);
-                }
-            }
-        }
-```
+binary search 进一步优化！
 
 ### Maximum Subarray([Leetcode 53](https://leetcode.com/problems/maximum-subarray/))
 
