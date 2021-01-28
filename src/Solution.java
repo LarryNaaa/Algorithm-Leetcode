@@ -2,31 +2,37 @@ import java.io.IOException;
 import java.util.*;
 
 public class Solution {
-    public static int lruCacheMisses(int num, int[] pages, int maxCacheSize) {
-        // WRITE YOUR BRILLIANT CODE HERE
-        if(pages.length < 1 || maxCacheSize == 0) return 0;
-        Set<Integer> set = new HashSet<>();
-        Queue<Integer> q = new LinkedList<>();
+    static List<List<Integer>> ans = new ArrayList<>();
+    static List<Integer> perm = new ArrayList<>();
 
-        int miss = 0;
-        for(int page : pages){
-            if(!set.contains(page)){
-                miss++;
-                set.add(page);
-                q.add(page);
-                if(q.size() > maxCacheSize) set.remove(q.remove());
-            }else{
-                q.remove();
-                q.add(page);
-            }
-        }
-        return miss;
+    public static List<List<Integer>> permutation(int[] nums) {
+        boolean[] visited = new boolean[nums.length];
+
+        dfs(nums, visited);
+
+        return ans;
     }
-    public static void main(String[] args){
-        int num = 4;
-        int[] pages = {26, 16, 56, 42, 90, 24, 9, 38, 83, 41};
-        int maxCacheSize = 2;
 
-        System.out.println(lruCacheMisses(num, pages, maxCacheSize));
+    public static void dfs(int[] nums, boolean[] visited){
+        if(perm.size() == nums.length){
+            ans.add(new ArrayList(perm));
+            return;
+        }
+
+        for(int i = 0; i < nums.length; ++i){
+            if(visited[i]) continue;
+
+            visited[i] = true;
+            perm.add(nums[i]);
+
+            dfs(nums, visited);
+
+            perm.remove(perm.size() - 1);
+            visited[i] = false;
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(permutation(new int[] {1, 2, 3}).toString());
     }
 }
